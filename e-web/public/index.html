@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>E Web | Premium E-commerce Store</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="bg-orb orb-one"></div>
+  <div class="bg-orb orb-two"></div>
+  <div class="bg-grid"></div>
+
+  <header class="navbar">
+    <a href="#home" class="brand" data-page="home">
+      <span class="brand-logo">E</span>
+      <span>
+        <strong>E Web</strong>
+        <small>Premium Store</small>
+      </span>
+    </a>
+
+    <nav class="nav-links">
+      <a href="#home" data-page="home" class="active">Home</a>
+      <a href="#products" data-page="products">Products</a>
+      <a href="#cart" data-page="cart">Cart <span id="cartBadge" class="badge">0</span></a>
+      <a href="#orders" data-page="orders">Orders</a>
+    </nav>
+
+    <div class="nav-actions">
+      <span id="userPill" class="user-pill hidden"></span>
+      <button id="loginOpenBtn" class="btn ghost">Login</button>
+      <button id="logoutBtn" class="btn danger hidden">Logout</button>
+      <button id="menuBtn" class="menu-btn">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="homePage" class="page active-page hero-section">
+      <div class="hero-content">
+        <p class="eyebrow">AFXX style premium full stack project</p>
+        <h1>Build your future store with <span>E Web</span></h1>
+        <p class="hero-text">
+          A modern e-commerce website with products, product details, shopping cart,
+          user login, order checkout and SQLite database.
+        </p>
+        <div class="hero-actions">
+          <button class="btn primary" data-page="products">Explore Products</button>
+          <button class="btn glass" id="heroLoginBtn">Create Account</button>
+        </div>
+        <div class="stats">
+          <div><strong>8+</strong><small>Products</small></div>
+          <div><strong>100%</strong><small>Full Stack</small></div>
+          <div><strong>SQLite</strong><small>Database</small></div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-product-icon">🛍️</div>
+        <h2>Premium Shopping Experience</h2>
+        <p>Cart, checkout, login, orders and database — all in one project.</p>
+        <div class="floating-line"></div>
+      </div>
+    </section>
+
+    <section id="productsPage" class="page section">
+      <div class="section-top">
+        <div>
+          <p class="eyebrow">Shop collection</p>
+          <h2>Products</h2>
+        </div>
+        <div class="filters">
+          <input id="searchInput" type="search" placeholder="Search products..." />
+          <select id="categorySelect"></select>
+        </div>
+      </div>
+      <div id="productsGrid" class="products-grid"></div>
+    </section>
+
+    <section id="productDetailsPage" class="page section">
+      <button class="btn ghost back-btn" data-page="products">← Back to Products</button>
+      <div id="productDetails" class="details-wrap"></div>
+    </section>
+
+    <section id="cartPage" class="page section">
+      <div class="section-top">
+        <div>
+          <p class="eyebrow">Your selected items</p>
+          <h2>Shopping Cart</h2>
+        </div>
+      </div>
+      <div class="cart-layout">
+        <div id="cartItems" class="cart-items"></div>
+        <aside class="summary-card">
+          <h3>Order Summary</h3>
+          <div class="summary-row"><span>Subtotal</span><strong id="cartSubtotal">₹0</strong></div>
+          <div class="summary-row"><span>Delivery</span><strong>Free</strong></div>
+          <div class="summary-total"><span>Total</span><strong id="cartTotal">₹0</strong></div>
+          <button id="checkoutBtn" class="btn primary full">Checkout</button>
+        </aside>
+      </div>
+    </section>
+
+    <section id="ordersPage" class="page section">
+      <div class="section-top">
+        <div>
+          <p class="eyebrow">Your purchase history</p>
+          <h2>My Orders</h2>
+        </div>
+      </div>
+      <div id="ordersList" class="orders-list"></div>
+    </section>
+  </main>
+
+  <div id="authModal" class="modal hidden">
+    <div class="modal-box">
+      <button class="close-btn" id="authCloseBtn">×</button>
+      <div class="auth-tabs">
+        <button id="loginTab" class="active">Login</button>
+        <button id="registerTab">Register</button>
+      </div>
+
+      <form id="loginForm" class="auth-form">
+        <h2>Welcome back</h2>
+        <p>Login to continue shopping.</p>
+        <input type="email" id="loginEmail" placeholder="Email address" required />
+        <input type="password" id="loginPassword" placeholder="Password" required />
+        <button class="btn primary full" type="submit">Login</button>
+      </form>
+
+      <form id="registerForm" class="auth-form hidden">
+        <h2>Create account</h2>
+        <p>Join E Web and place your first order.</p>
+        <input type="text" id="registerName" placeholder="Full name" required />
+        <input type="email" id="registerEmail" placeholder="Email address" required />
+        <input type="password" id="registerPassword" placeholder="Password min 6 characters" required />
+        <button class="btn primary full" type="submit">Register</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="checkoutModal" class="modal hidden">
+    <div class="modal-box checkout-box">
+      <button class="close-btn" id="checkoutCloseBtn">×</button>
+      <h2>Checkout</h2>
+      <p>Enter delivery details to place your order.</p>
+      <form id="checkoutForm" class="auth-form">
+        <input type="text" id="customerName" placeholder="Customer name" required />
+        <input type="tel" id="customerPhone" placeholder="Phone number" required />
+        <textarea id="customerAddress" placeholder="Delivery address" required></textarea>
+        <select id="paymentMethod" required>
+          <option value="Cash on Delivery">Cash on Delivery</option>
+          <option value="UPI Demo Payment">UPI Demo Payment</option>
+          <option value="Card Demo Payment">Card Demo Payment</option>
+        </select>
+        <button class="btn primary full" type="submit">Place Order</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>
