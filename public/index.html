@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Social Wave | Mini Social Media Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="glow glow-one"></div>
+  <div class="glow glow-two"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#home" onclick="showSection('home')">
+      <span class="logo">SW</span>
+      <span>Social Wave</span>
+    </a>
+    <nav class="nav">
+      <button onclick="showSection('home')">Feed</button>
+      <button onclick="showSection('people')">People</button>
+      <button onclick="showSection('profile')">Profile</button>
+      <button onclick="showSection('auth')" id="authNavBtn">Login</button>
+      <button class="logout-btn hidden" onclick="logoutUser()" id="logoutBtn">Logout</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="section active">
+      <div class="hero">
+        <div>
+          <p class="eyebrow">Mini Social Media Platform</p>
+          <h1>Share posts, connect friends, build your network.</h1>
+          <p class="subtext">A premium full-stack social app with authentication, posts, comments, likes, profiles and follow system.</p>
+          <div class="hero-actions">
+            <button class="primary" onclick="showSection('auth')">Get Started</button>
+            <button class="secondary" onclick="showSection('people')">Explore People</button>
+          </div>
+        </div>
+        <div class="stats-card">
+          <h3>Live Platform Stats</h3>
+          <div class="stats-grid">
+            <div><b id="statUsers">0</b><span>Users</span></div>
+            <div><b id="statPosts">0</b><span>Posts</span></div>
+            <div><b id="statLikes">0</b><span>Likes</span></div>
+            <div><b id="statComments">0</b><span>Comments</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="layout">
+        <aside class="sidebar card">
+          <h3>Current User</h3>
+          <div id="currentUserBox" class="mini-profile">Login to start posting.</div>
+          <div class="hint-box">
+            <b>Demo login</b>
+            <p>Username: <code>riyan</code></p>
+            <p>Password: <code>123456</code></p>
+          </div>
+        </aside>
+
+        <section class="feed-area">
+          <div class="composer card" id="composerBox">
+            <textarea id="postContent" placeholder="What is happening today?"></textarea>
+            <input id="postImage" placeholder="Optional image URL" />
+            <button class="primary" onclick="createPost()">Publish Post</button>
+          </div>
+          <div id="feedList" class="feed-list"></div>
+        </section>
+      </div>
+    </section>
+
+    <section id="people" class="section">
+      <div class="section-head">
+        <p class="eyebrow">Discover</p>
+        <h2>People on Social Wave</h2>
+        <p>Follow creators, view profiles and explore posts.</p>
+      </div>
+      <div id="peopleList" class="people-grid"></div>
+    </section>
+
+    <section id="profile" class="section">
+      <div class="section-head">
+        <p class="eyebrow">Account</p>
+        <h2>Your Profile</h2>
+        <p>Update your name, bio and avatar URL.</p>
+      </div>
+      <div class="profile-layout">
+        <div class="card profile-editor">
+          <label>Name</label>
+          <input id="profileName" placeholder="Your name" />
+          <label>Bio</label>
+          <textarea id="profileBio" placeholder="Write a short bio"></textarea>
+          <label>Avatar URL</label>
+          <input id="profileAvatar" placeholder="https://example.com/avatar.png" />
+          <button class="primary" onclick="updateProfile()">Save Profile</button>
+        </div>
+        <div class="card profile-preview" id="profilePreview"></div>
+      </div>
+    </section>
+
+    <section id="auth" class="section">
+      <div class="auth-wrap">
+        <div class="auth-card card">
+          <div class="tabs">
+            <button class="tab active" onclick="switchAuth('login')" id="loginTab">Login</button>
+            <button class="tab" onclick="switchAuth('register')" id="registerTab">Register</button>
+          </div>
+
+          <form id="loginForm" class="auth-form" onsubmit="loginUser(event)">
+            <h2>Welcome Back</h2>
+            <p>Login using username/email and password.</p>
+            <input id="loginEmail" placeholder="Username or Email" required />
+            <input id="loginPassword" type="password" placeholder="Password" required />
+            <button class="primary" type="submit">Login</button>
+          </form>
+
+          <form id="registerForm" class="auth-form hidden" onsubmit="registerUser(event)">
+            <h2>Create Account</h2>
+            <p>Join the platform and start posting.</p>
+            <input id="regName" placeholder="Full Name" required />
+            <input id="regUsername" placeholder="Username" required />
+            <input id="regEmail" type="email" placeholder="Email" required />
+            <input id="regPassword" type="password" placeholder="Password minimum 6 characters" required />
+            <button class="primary" type="submit">Register</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast"></div>
+  <script src="js/app.js"></script>
+</body>
+</html>
